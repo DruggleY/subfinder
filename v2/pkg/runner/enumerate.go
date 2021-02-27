@@ -2,7 +2,7 @@ package runner
 
 import (
 	"context"
-	"os"
+	"fmt"
 	"strings"
 	"sync"
 	"time"
@@ -107,6 +107,7 @@ func (r *Runner) EnumerateSingleDomain(ctx context.Context, domain, output strin
 				// Add the found subdomain to a map.
 				if _, ok := foundResults[result.Host]; !ok {
 					foundResults[result.Host] = result
+					fmt.Println(result.Host)
 				}
 			}
 		}
@@ -117,6 +118,7 @@ func (r *Runner) EnumerateSingleDomain(ctx context.Context, domain, output strin
 
 	// If verbose mode was used, then now print all the
 	// found subdomains on the screen together.
+	/*
 	var err error
 	if r.options.HostIP {
 		err = outputter.WriteHostIP(foundResults, os.Stdout)
@@ -135,6 +137,7 @@ func (r *Runner) EnumerateSingleDomain(ctx context.Context, domain, output strin
 		gologger.Error().Msgf("Could not verbose results for %s: %s\n", domain, err)
 		return err
 	}
+	*/
 
 	// Show found subdomain count in any case.
 	duration := durafmt.Parse(time.Since(now)).LimitFirstN(maxNumCount).String()
