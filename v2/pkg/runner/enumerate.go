@@ -84,6 +84,8 @@ func (r *Runner) EnumerateSingleDomain(ctx context.Context, domain, output strin
 				// the screen as they are discovered.
 				if r.options.RemoveWildcard {
 					resolutionPool.Tasks <- hostEntry
+				} else {
+					fmt.Println(subdomain)
 				}
 			}
 		}
